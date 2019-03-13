@@ -16,7 +16,4 @@ using System.Windows.Markup;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: XmlnsDefinition("http://www.CoreMvvm.com", "CoreMvvm.Wpf.Behaviours")]
-[assembly: XmlnsDefinition("http://www.CoreMvvm.com", "CoreMvvm.Wpf.Converters")]
-[assembly: XmlnsDefinition("http://www.CoreMvvm.com", "CoreMvvm.Wpf.Controls")]
-[assembly: XmlnsDefinition("http://www.CoreMvvm.com", "CoreMvvm.Wpf")]
+[assembly: XmlnsDefinition("http://www.unomvvvm.com", "UnoMvvm.Wpf")]
