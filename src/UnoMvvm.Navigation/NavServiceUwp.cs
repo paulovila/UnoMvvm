@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace UnoMvvm.Uwp
+namespace UnoMvvm.Navigation
 {
     public abstract class NavServiceUwp : NavServiceBase<ContentControl, FrameworkElement>
     {

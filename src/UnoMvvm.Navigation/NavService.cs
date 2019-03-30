@@ -2,9 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace UnoMvvm.Uwp
+namespace UnoMvvm.Navigation
 {
-
     public class NavService : NavServiceUwp
     {
         public NavService(IDispatcherUiService dispatcherUiService) : base(dispatcherUiService)
