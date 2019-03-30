@@ -21,6 +21,6 @@
     <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="UnoMvvm" Version="1.0.34" />
+    <ProjectReference Include="..\UnoMvvm\UnoMvvm.csproj" />
   </ItemGroup>
 </Project>
