@@ -1,2 +1,2 @@
-# CoreMvvm
-Core MVVM
+# UnoMvvm
+UnoMVVM
