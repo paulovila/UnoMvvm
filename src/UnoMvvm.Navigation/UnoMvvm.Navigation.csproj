@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299;uap10.0.18362</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
-    <Description>UnoMvvm is a Model View-View Model library with basic Command and Event Aggregator functionality in .Net Standard 2.0, targeting UWP, iOS, WebAssembly</Description>
+    <Description>UnoMvvm.Navigation is Uno Platform library for UI navigation targeting Android, iOS, Web Assembly, Windows 10.0.16299 and Windows 10.0.18362</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.35.0</AssemblyVersion>
     <FileVersion>1.0.35.0</FileVersion>
@@ -13,7 +13,7 @@
     <PackageTags>Uno MVVM</PackageTags>
     <PackageId>UnoMvvm.Navigation</PackageId>
     <Authors>UnoMvvm.Navigation</Authors>
-    <Version>1.45.0.1102</Version>
+    <Version>1.45.0.11020</Version>
     <Product>UnoMvvm.Navigation</Product>
     <Company>UnoMvvm.Navigation</Company>
   </PropertyGroup>
