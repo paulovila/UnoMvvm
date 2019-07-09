@@ -1,9 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/1.6.46">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299;uap10.0.18362</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <Description>UnoMvvm is a Model View-View Model library with basic Command and Event Aggregator functionality in .Net Standard 2.0, targeting UWP, iOS, WebAssembly</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>1.0.35.0</AssemblyVersion>
+    <FileVersion>1.0.35.0</FileVersion>
+    <PackageProjectUrl>https://github.com/paulovila/CoreMvvm/pulse</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/paulovila/CoreMvvm/pulse</RepositoryUrl>
+    <PackageTags>Uno MVVM</PackageTags>
+    <PackageId>UnoMvvm.Navigation</PackageId>
+    <Authors>UnoMvvm.Navigation</Authors>
+    <Version>1.45.0.1102</Version>
+    <Product>UnoMvvm.Navigation</Product>
+    <Company>UnoMvvm.Navigation</Company>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
@@ -21,6 +33,6 @@
     <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UnoMvvm\UnoMvvm.csproj" />
+    <PackageReference Include="UnoMvvm" Version="1.0.34" />
   </ItemGroup>
 </Project>
