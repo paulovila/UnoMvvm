@@ -13,9 +13,12 @@
     <PackageTags>Uno MVVM</PackageTags>
     <PackageId>UnoMvvm.Navigation</PackageId>
     <Authors>UnoMvvm.Navigation</Authors>
-    <Version>1.46.0-dev.2136</Version>
+    <Version>1.46.227.2665</Version>
     <Product>UnoMvvm.Navigation</Product>
     <Company>UnoMvvm.Navigation</Company>
+  </PropertyGroup>
+  <PropertyGroup Label="Android DesignTimeBuild error workaround">
+    <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
