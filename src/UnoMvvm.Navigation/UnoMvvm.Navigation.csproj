@@ -24,7 +24,7 @@
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="Uno.UI" Version="1.46.227-dev.2665" />
+    <PackageReference Include="Uno.UI" Version="1.46.228-dev.2683" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
