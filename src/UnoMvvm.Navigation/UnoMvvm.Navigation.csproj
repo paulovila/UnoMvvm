@@ -13,7 +13,7 @@
     <PackageTags>Uno MVVM</PackageTags>
     <PackageId>UnoMvvm.Navigation</PackageId>
     <Authors>UnoMvvm.Navigation</Authors>
-    <Version>1.46.227.2683</Version>
+    <Version>2.0.512.3490</Version>
     <Product>UnoMvvm.Navigation</Product>
     <Company>UnoMvvm.Navigation</Company>
   </PropertyGroup>
@@ -24,7 +24,7 @@
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="Uno.UI" Version="1.46.228-dev.2683" />
+    <PackageReference Include="Uno.UI" Version="2.0.512-dev.3490" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
