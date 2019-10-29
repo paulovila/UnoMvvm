@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/1.6.46">
+<Project Sdk="MSBuild.Sdk.Extras/1.6.68">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299;uap10.0.18362</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
@@ -13,18 +13,15 @@
     <PackageTags>Uno MVVM</PackageTags>
     <PackageId>UnoMvvm.Navigation</PackageId>
     <Authors>UnoMvvm.Navigation</Authors>
-    <Version>2.0.512.3490</Version>
+    <Version>2.0.512.3629</Version>
     <Product>UnoMvvm.Navigation</Product>
     <Company>UnoMvvm.Navigation</Company>
-  </PropertyGroup>
-  <PropertyGroup Label="Android DesignTimeBuild error workaround">
-    <DesignTimeBuild>false</DesignTimeBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0'">
-    <PackageReference Include="Uno.UI" Version="2.0.512-dev.3490" />
+    <PackageReference Include="Uno.UI" Version="2.0.512-dev.3629" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
