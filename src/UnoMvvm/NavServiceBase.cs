@@ -21,7 +21,8 @@ namespace UnoMvvm
             var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVM));
             SetDc(view, vm);
             PrepareNavigation(view);
-            await TryLoad(vm as ILoadViewModel);
+            if (vm is ILoadViewModel vmLoad)
+                await TryLoad(vmLoad);
         }
 
         public async void Navigate<TVM, TP>(TP parameters)
@@ -31,8 +32,7 @@ namespace UnoMvvm
             var view = ViewModelLocationProvider.NewViewFromVm<TVM>() as TFe;
             var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVM));
 
-            var vmPar = vm as IParametersViewModel;
-            if (vmPar != null)
+            if (vm is IParametersViewModel vmPar)
             {
                 vmPar.Parameters = parameters;
             }
