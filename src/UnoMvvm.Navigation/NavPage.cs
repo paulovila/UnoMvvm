@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace UnoMvvm.Navigation
 {
-    public partial class NavPage<T> : Page where T : FrameworkElement
+    public class NavPage<T> : Page where T : FrameworkElement
     {
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
