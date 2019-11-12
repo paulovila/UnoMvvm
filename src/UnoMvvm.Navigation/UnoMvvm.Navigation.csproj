@@ -8,14 +8,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.35.0</AssemblyVersion>
     <FileVersion>1.0.35.0</FileVersion>
-    <PackageProjectUrl>https://github.com/paulovila/CoreMvvm/pulse</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/paulovila/CoreMvvm/pulse</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/paulovila/CoreMvvm</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/paulovila/CoreMvvm</RepositoryUrl>
     <PackageTags>Uno MVVM</PackageTags>
     <PackageId>UnoMvvm.Navigation</PackageId>
-    <Authors>UnoMvvm.Navigation</Authors>
-    <Version>2.0.512.3880</Version>
+    <Authors>paulovila</Authors>
+    <Version>$(NugetVersion)</Version>
     <Product>UnoMvvm.Navigation</Product>
-    <Company>UnoMvvm.Navigation</Company>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
