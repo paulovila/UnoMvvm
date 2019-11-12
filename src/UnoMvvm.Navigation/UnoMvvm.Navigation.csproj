@@ -20,8 +20,11 @@
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0'">
+  <ItemGroup Condition="'$(Configuration)'=='Debug' and ('$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0')">
     <PackageReference Include="Uno.UI" Version="2.0.512-dev.3880" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='Release' and ('$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0')">
+    <PackageReference Include="Uno.UI" Version="$(UnoMvvmNavigationVersion)" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
