@@ -7,16 +7,42 @@ using System.Threading;
 
 namespace UnoMvvm
 {
+    public abstract class PropertyObserverBase
+    {
+        private readonly HashSet<string> _observedPropertiesExpressions = new HashSet<string>();
+        /// <summary>
+        /// Observes a property that implements INotifyPropertyChanged, and automatically calls DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
+        /// </summary>
+        /// <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
+        /// <param name="propertyExpression">The property expression. Example: ObservesProperty(() => PropertyName).</param>
+        protected internal void ObservesPropertyInternal<T>(Expression<Func<T>> propertyExpression)
+        {
+            if (_observedPropertiesExpressions.Contains(propertyExpression.ToString()))
+            {
+                throw new ArgumentException($"{propertyExpression} is already being observed.",
+                    nameof(propertyExpression));
+            }
+            else
+            {
+                _observedPropertiesExpressions.Add(propertyExpression.ToString());
+                PropertyObserver.Observes(propertyExpression, RaiseCanExecuteChanged);
+            }
+        }
+
+        public abstract void RaiseCanExecuteChanged();
+
+
+
+    }
     /// <summary>
     /// An <see cref="ICommand"/> whose delegates can be attached for <see cref="Execute"/> and <see cref="CanExecute"/>.
     /// </summary>
-    public abstract class DelegateCommandBase : ICommand
+    public abstract class DelegateCommandBase : PropertyObserverBase, ICommand
     {
         private bool _isActive;
 
-        private SynchronizationContext _synchronizationContext;
-        private readonly HashSet<string> _observedPropertiesExpressions = new HashSet<string>();
-
+        private readonly SynchronizationContext _synchronizationContext;
+        
         /// <summary>
         /// Creates a new instance of a <see cref="DelegateCommandBase"/>, specifying both the execute action and the can execute function.
         /// </summary>
@@ -52,7 +78,7 @@ namespace UnoMvvm
         /// <remarks>Note that this will trigger the execution of <see cref="CanExecuteChanged"/> once for each invoker.</remarks>
         /// </summary>
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate")]
-        public void RaiseCanExecuteChanged()
+        public override void RaiseCanExecuteChanged()
         {
             OnCanExecuteChanged();
         }
@@ -80,25 +106,7 @@ namespace UnoMvvm
         /// <returns><see langword="true"/> if the Command Can Execute, otherwise <see langword="false" /></returns>
         protected abstract bool CanExecute(object parameter);
 
-        /// <summary>
-        /// Observes a property that implements INotifyPropertyChanged, and automatically calls DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
-        /// </summary>
-        /// <typeparam name="T">The object type containing the property specified in the expression.</typeparam>
-        /// <param name="propertyExpression">The property expression. Example: ObservesProperty(() => PropertyName).</param>
-        protected internal void ObservesPropertyInternal<T>(Expression<Func<T>> propertyExpression)
-        {
-            if (_observedPropertiesExpressions.Contains(propertyExpression.ToString()))
-            {
-                throw new ArgumentException($"{propertyExpression.ToString()} is already being observed.",
-                    nameof(propertyExpression));
-            }
-            else
-            {
-                _observedPropertiesExpressions.Add(propertyExpression.ToString());
-                PropertyObserver.Observes(propertyExpression, RaiseCanExecuteChanged);
-            }
-        }
-
+     
         #region IsActive
 
         /// <summary>
@@ -107,7 +115,7 @@ namespace UnoMvvm
         /// <value><see langword="true" /> if the object is active; otherwise <see langword="false" />.</value>
         public bool IsActive
         {
-            get { return _isActive; }
+            get => _isActive;
             set
             {
                 if (_isActive != value)

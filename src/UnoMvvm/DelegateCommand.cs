@@ -11,18 +11,15 @@ namespace UnoMvvm
     /// <see cref="DelegateCommand{T}"/>
     public class DelegateCommand : DelegateCommandBase
     {
-        Action _executeMethod;
-        Func<bool> _canExecuteMethod;
+        private readonly Action _executeMethod;
+        private Func<bool> _canExecuteMethod;
 
         /// <summary>
         /// Creates a new instance of <see cref="DelegateCommand"/> with the <see cref="Action"/> to invoke on execution.
         /// </summary>
         /// <param name="executeMethod">The <see cref="Action"/> to invoke when <see cref="ICommand.Execute(object)"/> is called.</param>
         public DelegateCommand(Action executeMethod)
-            : this(executeMethod, () => true)
-        {
-
-        }
+            : this(executeMethod, () => true) { }
 
         /// <summary>
         /// Creates a new instance of <see cref="DelegateCommand"/> with the <see cref="Action"/> to invoke on execution
@@ -31,11 +28,9 @@ namespace UnoMvvm
         /// <param name="executeMethod">The <see cref="Action"/> to invoke when <see cref="ICommand.Execute"/> is called.</param>
         /// <param name="canExecuteMethod">The <see cref="Func{TResult}"/> to invoke when <see cref="ICommand.CanExecute"/> is called</param>
         public DelegateCommand(Action executeMethod, Func<bool> canExecuteMethod)
-            : base()
         {
             if (executeMethod == null || canExecuteMethod == null)
                 throw new ArgumentNullException(nameof(executeMethod), "DelegateCommandDelegatesCannotBeNull");
-
             _executeMethod = executeMethod;
             _canExecuteMethod = canExecuteMethod;
         }
@@ -43,38 +38,26 @@ namespace UnoMvvm
         ///<summary>
         /// Executes the command.
         ///</summary>
-        public void Execute()
-        {
-            _executeMethod();
-        }
+        public void Execute() => _executeMethod();
 
         /// <summary>
         /// Determines if the command can be executed.
         /// </summary>
         /// <returns>Returns <see langword="true"/> if the command can execute,otherwise returns <see langword="false"/>.</returns>
-        public bool CanExecute()
-        {
-            return _canExecuteMethod();
-        }
+        public bool CanExecute() => _canExecuteMethod();
 
         /// <summary>
         /// Handle the internal invocation of <see cref="ICommand.Execute(object)"/>
         /// </summary>
         /// <param name="parameter">Command Parameter</param>
-        protected override void Execute(object parameter)
-        {
-            Execute();
-        }
+        protected override void Execute(object parameter) => Execute();
 
         /// <summary>
         /// Handle the internal invocation of <see cref="ICommand.CanExecute(object)"/>
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns><see langword="true"/> if the Command Can Execute, otherwise <see langword="false" /></returns>
-        protected override bool CanExecute(object parameter)
-        {
-            return CanExecute();
-        }
+        protected override bool CanExecute(object parameter) => CanExecute();
 
         /// <summary>
         /// Observes a property that implements INotifyPropertyChanged, and automatically calls DelegateCommandBase.RaiseCanExecuteChanged on property changed notifications.
