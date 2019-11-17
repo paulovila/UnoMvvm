@@ -35,6 +35,6 @@
     <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="UnoMvvm" Version="1.0.42" />
+    <PackageReference Include="UnoMvvm" Version="1.0.43" />
   </ItemGroup>
 </Project>
