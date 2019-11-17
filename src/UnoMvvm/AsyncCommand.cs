@@ -117,7 +117,7 @@ namespace UnoMvvm
     public sealed class AsyncCommand : PropertyObserverBase, IAsyncCommand
     {
         private readonly Func<Task> _execute;
-        private Func<object?, bool> _canExecute;
+        private Func<bool> _canExecute;
         private readonly Action<Exception>? _onException;
         readonly bool _continueOnCapturedContext;
         private readonly WeakEventManager _weakEventManager = new WeakEventManager();
@@ -130,12 +130,12 @@ namespace UnoMvvm
         /// <param name="onException">If an exception is thrown in the Task, <c>onException</c> will execute. If onException is null, the exception will be re-thrown</param>
         /// <param name="continueOnCapturedContext">If set to <c>true</c> continue on captured context; this will ensure that the Synchronization Context returns to the calling thread. If set to <c>false</c> continue on a different context; this will allow the Synchronization Context to continue on a different thread</param>
         public AsyncCommand(Func<Task> execute,
-                            Func<object?, bool>? canExecute = null,
+                            Func<bool>? canExecute = null,
                             Action<Exception>? onException = null,
                             bool continueOnCapturedContext = false)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute), $"{nameof(execute)} cannot be null");
-            _canExecute = canExecute ?? (_ => true);
+            _canExecute = canExecute ?? (() => true);
             _onException = onException;
             _continueOnCapturedContext = continueOnCapturedContext;
         }
@@ -154,7 +154,7 @@ namespace UnoMvvm
         /// </summary>
         /// <returns><c>true</c>, if this command can be executed; otherwise, <c>false</c>.</returns>
         /// <param name="parameter">Data used by the command. If the command does not require data to be passed, this object can be set to null.</param>
-        public bool CanExecute(object? parameter) => _canExecute(parameter);
+        public bool CanExecute(object? parameter) => _canExecute();
 
         /// <summary>
         /// Raises the CanExecuteChanged event.
@@ -188,7 +188,7 @@ namespace UnoMvvm
         /// <returns>The current instance of DelegateCommand</returns>
         public AsyncCommand ObservesCanExecute(Expression<Func<bool>> canExecuteExpression)
         {
-            _canExecute = p => canExecuteExpression.Compile().Invoke();
+            _canExecute = () => canExecuteExpression.Compile().Invoke();
             ObservesPropertyInternal(canExecuteExpression);
             return this;
         }
