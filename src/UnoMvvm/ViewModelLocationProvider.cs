@@ -6,7 +6,7 @@ namespace UnoMvvm
     public static class ViewModelLocationProvider
     {
         public static readonly Dictionary<Type, Type> V_VmDictionary = new Dictionary<Type, Type>();
-       public  static readonly Dictionary<Type, Type> Vm_vDictionary = new Dictionary<Type, Type>();
+        public static readonly Dictionary<Type, Type> Vm_vDictionary = new Dictionary<Type, Type>();
         public static Func<Type, object> ViewModelFactory;
         public static void Register<TV, TVM>()
         {

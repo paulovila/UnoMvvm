@@ -27,14 +27,14 @@ namespace UnoMvvm
 
         public async void Navigate<TVM, TP>(TP parameters)
             where TVM : IViewModel
-            where TP : INavigationParameters
+           
         {
             var view = ViewModelLocationProvider.NewViewFromVm<TVM>() as TFe;
             var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVM));
 
-            if (vm is IParametersViewModel vmPar)
+            if (vm is IParameterViewModel<TP> vmPar)
             {
-                vmPar.Parameters = parameters;
+                vmPar.Parameter = parameters;
             }
             SetDc(view, vm);
             PrepareNavigation(view);
@@ -78,6 +78,12 @@ namespace UnoMvvm
                 navService.SetContent(navService._content, navService._temporaryNavigation);
                 navService._temporaryNavigation = null;
             }
+        }
+
+
+        public void Clear()
+        {
+            _dispatcherUiService.Run(() => SetContent(_content, null));
         }
     }
 }
