@@ -11,7 +11,10 @@ namespace UnoMvvm.Navigation
 
         public override void SetContent(Frame content, FrameworkElement view)
         {
-            content.Navigate(typeof(NavPage<>).MakeGenericType(view.GetType()), view);
+            if (view == null)
+                content.Content = null;
+            else
+                content.Navigate(typeof(NavPage<>).MakeGenericType(view.GetType()), view);
         }
 
         public override void SetDc(FrameworkElement view, object vm)
