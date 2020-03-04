@@ -15,7 +15,8 @@
     <Authors>paulovila</Authors>
     <Version>$(NugetVersion)</Version>
     <Product>UnoMvvm.Navigation</Product>
-    <PackageLicenseExpression>Empty</PackageLicenseExpression>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>TextFile1.txt</PackageLicenseFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
@@ -37,5 +38,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="UnoMvvm" Version="1.0.47" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\TextFile1.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
