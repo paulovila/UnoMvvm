@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.41">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299;uap10.0.18362</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;xamarinios10;monoandroid80;uap10.0.16299;uap10.0.17134;uap10.0.17763;uap10.0.18362;uap10.0.19041</TargetFrameworks>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
     <Description>UnoMvvm.Navigation is Uno Platform library for UI navigation targeting Android, iOS, Web Assembly, Windows 10.0.16299 and Windows 10.0.18362</Description>
@@ -17,12 +17,13 @@
     <Product>UnoMvvm.Navigation</Product>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>TextFile1.txt</PackageLicenseFile>
+    <ExtrasUwpMetaPackageVersion>6.2.10</ExtrasUwpMetaPackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
     <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
   </PropertyGroup>
   <ItemGroup Condition="'$(Configuration)'=='Debug' and ('$(TargetFramework)'=='xamarinios10' or '$(TargetFramework)'=='monoandroid80' or '$(TargetFramework)'=='netstandard2.0')">
-    <PackageReference Include="Uno.UI" Version="2.2.0-dev.18" />
+    <PackageReference Include="Uno.UI" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
@@ -34,7 +35,7 @@
     <UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="UnoMvvm" Version="1.0.47" />
+    <PackageReference Include="UnoMvvm" Version="1.0.48" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\TextFile1.txt">

@@ -1,19 +1,21 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace UnoMvvm.Navigation
 {
     public class DispatcherUiService : IDispatcherUiService
     {
 #if __WASM__ || __IOS__
-        public void Run(Action action)
+        public Task Run(Action action)
         {
             action();
+            return  Task.CompletedTask;
         }
 
 #else
-        public async void Run(Action action)
+        public async Task Run(Action action)
         {
-            Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(action));
+           await  Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, new Windows.UI.Core.DispatchedHandler(action));
         }
 #endif
     }
