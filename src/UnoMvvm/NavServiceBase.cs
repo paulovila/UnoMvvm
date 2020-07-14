@@ -10,35 +10,33 @@ namespace UnoMvvm
         private TFe _temporaryNavigation;
         private readonly IDispatcherUiService _dispatcherUiService;
 
-        public NavServiceBase(IDispatcherUiService dispatcherUiService)
-        {
-            _dispatcherUiService = dispatcherUiService;
-        }
+        public NavServiceBase(IDispatcherUiService dispatcherUiService) => _dispatcherUiService = dispatcherUiService;
 
-        public async void Navigate<TVM>() where TVM : IViewModel
+        public async Task Navigate<TVm>() where TVm : IViewModel
         {
-            var view = ViewModelLocationProvider.NewViewFromVm<TVM>() as TFe;
-            var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVM));
+            var view = ViewModelLocationProvider.NewViewFromVm<TVm>() as TFe;
+            var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVm));
             SetDc(view, vm);
-            PrepareNavigation(view);
+            await PrepareNavigation(view);
             if (vm is ILoadViewModel vmLoad)
                 await TryLoad(vmLoad);
         }
 
-        public async void Navigate<TVM, TP>(TP parameters)
-            where TVM : IViewModel
-           
+        public async Task Navigate<TVm, TP>(TP parameters)
+            where TVm : IViewModel
+
         {
-            var view = ViewModelLocationProvider.NewViewFromVm<TVM>() as TFe;
-            var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVM));
+            var view = ViewModelLocationProvider.NewViewFromVm<TVm>() as TFe;
+            var vm = ViewModelLocationProvider.ViewModelFactory(typeof(TVm));
 
             if (vm is IParameterViewModel<TP> vmPar)
             {
                 vmPar.Parameter = parameters;
             }
             SetDc(view, vm);
-            PrepareNavigation(view);
-            await TryLoad(vm as ILoadViewModel);
+            await PrepareNavigation(view);
+            if (vm is ILoadViewModel vmLoad)
+                await TryLoad(vmLoad);
         }
 
         public abstract void SetDc(TFe view, object vm);
@@ -55,7 +53,7 @@ namespace UnoMvvm
             }
         }
 
-        private void PrepareNavigation(TFe view)
+        private async Task PrepareNavigation(TFe view)
         {
             if (_content == null)
             {
@@ -64,7 +62,7 @@ namespace UnoMvvm
             else
             {
                 _temporaryNavigation = null;
-                _dispatcherUiService.Run(() => SetContent(_content, view));
+                await _dispatcherUiService.Run(() => SetContent(_content, view));
             }
         }
 
@@ -80,10 +78,6 @@ namespace UnoMvvm
             }
         }
 
-
-        public void Clear()
-        {
-            _dispatcherUiService.Run(() => SetContent(_content, null));
-        }
+        public void Clear() => _dispatcherUiService.Run(() => SetContent(_content, null));
     }
 }
